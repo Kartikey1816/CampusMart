@@ -1,0 +1,15 @@
+import { Bike, BookOpen, Calculator, Dumbbell, LampDesk, Monitor, Shirt, Smartphone } from 'lucide-react'
+
+export const listings = [
+  { id: 1, title: 'Casio fx-991ES Plus Calculator', price: 650, category: 'Electronics', condition: 'Like new', posted: '2 hours ago', seller: 'Riya S.', icon: Calculator, tone: 'lavender', pickupLocation: 'Central Library', description: 'A genuine Casio calculator in excellent condition. All functions work perfectly and it comes with its protective hard case.' },
+  { id: 2, title: 'Engineering Mathematics by B.S. Grewal', price: 280, category: 'Books', condition: 'Good', posted: '4 hours ago', seller: 'Aman P.', icon: BookOpen, tone: 'peach', pickupLocation: 'Academic Block A', description: 'Latest edition with only a few neatly highlighted pages. Great for first-year engineering students.' },
+  { id: 3, title: 'Study Desk Lamp', price: 450, category: 'Hostel', condition: 'Like new', posted: 'Yesterday', seller: 'Neha K.', icon: LampDesk, tone: 'mint', pickupLocation: 'Girls Hostel Gate', description: 'Compact adjustable LED desk lamp with three brightness settings. Used for one semester only.' },
+  { id: 4, title: 'Bluetooth Headphones', price: 1100, category: 'Electronics', condition: 'Good', posted: 'Yesterday', seller: 'Vikram M.', icon: Smartphone, tone: 'blue', pickupLocation: 'Student Activity Centre', description: 'Comfortable wireless headphones with clear sound and long battery life. Charging cable included.' },
+  { id: 5, title: 'Roadster Backpack', price: 500, category: 'Fashion', condition: 'Used', posted: '2 days ago', seller: 'Sana A.', icon: Shirt, tone: 'yellow', pickupLocation: 'Main Gate', description: 'Spacious everyday backpack with a dedicated laptop sleeve. Clean and structurally sound.' },
+  { id: 6, title: 'Campus Hybrid Cycle', price: 3200, category: 'Sports', condition: 'Good', posted: '2 days ago', seller: 'Arjun R.', icon: Bike, tone: 'rose', pickupLocation: 'Boys Hostel Parking', description: 'Smooth hybrid cycle suitable for moving around campus. Recently serviced; ready to ride.' },
+  { id: 7, title: 'Computer Networks Notes', price: 120, category: 'Books', condition: 'Like new', posted: '3 days ago', seller: 'Kunal J.', icon: BookOpen, tone: 'sky', pickupLocation: 'CSE Department', description: 'Complete handwritten notes organised unit by unit, with solved examples and important questions.' },
+  { id: 8, title: '27-inch Monitor Stand', price: 700, category: 'Hostel', condition: 'Good', posted: '3 days ago', seller: 'Priya D.', icon: Monitor, tone: 'sand', pickupLocation: 'Library Café', description: 'Strong, minimal monitor riser that creates space below your screen for a keyboard or notebook.' },
+  { id: 9, title: 'Resistance Bands Set', price: 250, category: 'Sports', condition: 'Like new', posted: '4 days ago', seller: 'Dev S.', icon: Dumbbell, tone: 'sage', pickupLocation: 'Sports Complex', description: 'Set of five resistance bands with handles and a door anchor. Barely used and fully clean.' },
+]
+
+export const listingCategories = ['All', 'Books', 'Electronics', 'Hostel', 'Fashion', 'Sports']
