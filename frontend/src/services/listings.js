@@ -20,7 +20,7 @@ const categoryAliases = {
   hostel: 'Hostel', fashion: 'Fashion', sport: 'Sports', sports: 'Sports'
 }
 
-export async function getListings({ search = '', category = 'All', sort = 'Newest', condition = 'All', minPrice = '', maxPrice = '' } = {}) {
+export async function getListings({ search = '', category = 'All', sort = 'Newest', condition = 'All', minPrice = '', maxPrice = '', seller = '' } = {}) {
   const normalizedSearch = search.trim().toLowerCase()
   const searchCategory = categoryAliases[normalizedSearch]
   const effectiveCategory = category === 'All' && searchCategory ? searchCategory : category
@@ -32,6 +32,7 @@ export async function getListings({ search = '', category = 'All', sort = 'Newes
     if (condition !== 'All') params.set('condition', condition)
     if (minPrice !== '') params.set('minPrice', minPrice)
     if (maxPrice !== '') params.set('maxPrice', maxPrice)
+    if (seller) params.set('seller', seller)
     const sortBy = { 'Newest': 'newest', 'Price: low to high': 'price_asc', 'Price: high to low': 'price_desc' }[sort]
     if (sortBy) params.set('sort', sortBy)
     const response = await fetch(`${apiBaseUrl}/listings?${params}`)
@@ -72,4 +73,18 @@ export async function uploadListingImages(id, files, token) {
   files.forEach((file) => body.append('images', file))
   const payload = await api(`/listings/${id}/images`, { method: 'POST', token, body })
   return normalizeListing(payload.listing)
+}
+
+export async function updateListing(id, fields, token) {
+  const payload = await api(`/listings/${id}`, { method: 'PATCH', token, body: fields })
+  return normalizeListing(payload.listing)
+}
+
+export async function markListingSold(id, token) {
+  const payload = await api(`/listings/${id}/mark-sold`, { method: 'PATCH', token })
+  return normalizeListing(payload.listing)
+}
+
+export async function deleteListing(id, token) {
+  await api(`/listings/${id}`, { method: 'DELETE', token })
 }

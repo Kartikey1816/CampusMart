@@ -10,6 +10,8 @@ import SellPage from './pages/SellPage'
 import ProfilePage from './pages/ProfilePage'
 import ChatsPage from './pages/ChatsPage'
 import SavedPage from './pages/SavedPage'
+import EditListingPage from './pages/EditListingPage'
+import SellerProfilePage from './pages/SellerProfilePage'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/listings/:listingId" element={<ListingDetailPage />} />
+          <Route path="/listings/:listingId/edit" element={<RequireAuth><EditListingPage /></RequireAuth>} />
+          <Route path="/sellers/:sellerId" element={<RequireAuth><SellerProfilePage /></RequireAuth>} />
           <Route path="/sell" element={<RequireAuth><SellPage /></RequireAuth>} />
           <Route path="/chats" element={<RequireAuth><ChatsPage /></RequireAuth>} />
           <Route path="/profile" element={<RequireAuth><ProfilePage /></RequireAuth>} />

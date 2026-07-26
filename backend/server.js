@@ -10,6 +10,7 @@ const profileRoutes = require('./routes/profileRoutes');
 const listingRoutes = require('./routes/listingRoutes');
 const conversationRoutes = require('./routes/conversationRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const { ensureDevelopmentTestUser, ensureDevelopmentFixtures } = require('./utils/ensureDevelopmentTestUser');
 
 const app = express();
@@ -41,6 +42,7 @@ app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/listings', listingRoutes);
 app.use('/api/v1/conversations', conversationRoutes);
 app.use('/api/v1/wishlist', wishlistRoutes);
+app.use('/api/v1/reviews', reviewRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

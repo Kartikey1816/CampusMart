@@ -2,6 +2,8 @@ const fs = require('fs/promises');
 const path = require('path');
 const mongoose = require('mongoose');
 const Listing = require('../models/Listing');
+const Review = require('../models/Review');
+const User = require('../models/User');
 const { uploadDirectory } = require('../middleware/uploadMiddleware');
 
 const allowedFields = ['title', 'description', 'price', 'category', 'condition', 'pickupLocation'];
@@ -261,8 +263,16 @@ const deleteListing = async (req, res, next) => {
   try {
     const listing = await getListingOrThrow(req.params.listingId);
     ensureOwner(listing, req.user._id);
+    const deletedReviews = await Review.deleteMany({ listing: listing._id });
     await listing.deleteOne();
     await removeUploadedFiles(listing.images);
+    if (deletedReviews.deletedCount) {
+      const [summary] = await Review.aggregate([
+        { $match: { seller: listing.seller._id } },
+        { $group: { _id: null, average: { $avg: '$rating' }, count: { $sum: 1 } } }
+      ]);
+      await User.findByIdAndUpdate(listing.seller._id, { ratingAverage: summary?.average || 0, ratingCount: summary?.count || 0 });
+    }
     res.json({ success: true, message: 'Listing deleted successfully.' });
   } catch (error) {
     next(error);
